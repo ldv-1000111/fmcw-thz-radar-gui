@@ -115,6 +115,18 @@ PlotWidget
    void updateSpectrum(const QVector<double>& rangeM,
                        const QVector<double>& magDb);
 
+.. rubric:: Framework references
+
+The GUI layer uses the following frameworks. Full citations are in
+:ref:`gui_bibliography`.
+
+- **Qt6 Widgets & Charts** — ``QWidget``, ``QDockWidget``, ``QDoubleSpinBox``,
+  ``QLineSeries``, ``QChartView``, ``QValueAxis`` [qt6docs]_ [qtcharts]_
+- **CMake** — ``cmake_minimum_required(VERSION 3.24)``,
+  ``qt_add_executable``, ``target_link_libraries`` [cmake324]_
+- **Git submodules** — engine consumed via ``extern/fmcw-thz-radar-sim``
+  with ``.gitmodules`` [gitsubmodules]_
+
 .. todo::
    Wire Doxygen/Breathe to auto-generate this page from header comments
    once the project reaches v0.2.0.

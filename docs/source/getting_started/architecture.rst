@@ -59,5 +59,6 @@ submodule and is exposed via ``RadarEngine``'s accessor methods.
 It is not allowed to:
 
 - Compute beat frequency, range resolution, Doppler shift, or any other
-  quantity defined in :ref:`fmcw_theory <https://fmcw-terahertz-radar-simulation.readthedocs.io>`
+  quantity defined in the `engine theory pages
+  <https://fmcw-terahertz-radar-simulation.readthedocs.io/en/latest/phase1/fmcw_theory.html>`_
 - Duplicate any formula from ``fmcw_generator.hpp``
