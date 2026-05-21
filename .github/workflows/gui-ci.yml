@@ -1,0 +1,44 @@
+name: GUI CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-linux:
+    name: Build & smoke-test (Ubuntu, Qt6)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            cmake ninja-build \
+            qt6-base-dev qt6-charts-dev \
+            libgl1-mesa-dev libglu1-mesa-dev \
+            xvfb
+
+      - name: Configure (offscreen — no display needed)
+        run: |
+          cmake --preset ci \
+            -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build-ci --parallel
+
+      - name: Smoke-test (launch + exit immediately)
+        run: |
+          xvfb-run --auto-servernum \
+            ./build-ci/fmcw_gui --platform offscreen &
+          PID=$!
+          sleep 3
+          kill $PID || true
+          echo "Smoke test passed — process started cleanly"

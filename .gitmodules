@@ -1,0 +1,4 @@
+[submodule "extern/fmcw-thz-radar-sim"]
+	path = extern/fmcw-thz-radar-sim
+	url = https://github.com/ldv-1000111/fmcw-thz-radar-sim.git
+    branch = main

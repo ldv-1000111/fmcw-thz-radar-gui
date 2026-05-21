@@ -1,0 +1,8 @@
+build/
+build-debug/
+build-ci/
+.cache/
+*.user
+*.autosave
+.DS_Store
+CMakeUserPresets.json
