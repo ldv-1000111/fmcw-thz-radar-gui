@@ -40,7 +40,7 @@ double RadarEngine::beatFreqHz()     const
 }
 double RadarEngine::dopplerHz()      const { return 2.0 * m_target.velocity * m_params.f0 / C; }
 double RadarEngine::rangeResM()      const { return C / (2.0 * m_params.bandwidth); }
-double RadarEngine::velResMps()      const { return wavelengthM() / (2.0 * m_params.chirp_time); }
+double RadarEngine::velResMps()      const { return wavelengthM() / (2.0 * m_params.num_chirps * m_params.chirp_time); }
 double RadarEngine::maxRangeM()      const { return m_params.fs * C / (2.0 * chirpSlopeTHzS()); }
 double RadarEngine::maxVelMps()      const { return wavelengthM() / (4.0 * m_params.chirp_time); }
 

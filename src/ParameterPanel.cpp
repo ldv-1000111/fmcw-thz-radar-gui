@@ -88,12 +88,13 @@ void ParameterPanel::onAnyControlChanged()
 
 void ParameterPanel::updateDerivedLabels()
 {
-    const double f0  = m_ui->spinF0_GHz->value() * 1.0e9;
-    const double B   = m_ui->spinBW_GHz->value() * 1.0e9;
-    const double Tc  = m_ui->spinTc_us->value()  * 1.0e-6;
-    const double lam = C / f0;
-    const double dr  = C / (2.0 * B);
-    const double dv  = lam / (2.0 * Tc);
+    const double f0   = m_ui->spinF0_GHz->value() * 1.0e9;
+    const double B    = m_ui->spinBW_GHz->value() * 1.0e9;
+    const double Tc   = m_ui->spinTc_us->value()  * 1.0e-6;
+    const double lam  = C / f0;
+    const double dr   = C / (2.0 * B);
+    const double Nc   = 256.0;   // num_chirps — fixed for Phase 1
+    const double dv   = lam / (2.0 * Nc * Tc);
 
     m_ui->lblLambda->setText(
         lam >= 1.0e-3
@@ -104,7 +105,9 @@ void ParameterPanel::updateDerivedLabels()
         QString("Δr = %1 cm").arg(dr * 100.0, 0, 'f', 2));
 
     m_ui->lblVelRes->setText(
-        QString("Δv = %1 mm/s").arg(dv * 1000.0, 0, 'f', 2));
+        dv * 1000.0 >= 1.0
+        ? QString("Δv = %1 mm/s").arg(dv * 1000.0, 0, 'f', 2)
+        : QString("Δv = %1 µm/s").arg(dv * 1.0e6,  0, 'f', 1));
 }
 
 }  // namespace fmcw_gui
