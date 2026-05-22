@@ -61,7 +61,7 @@ signals:
 private:
     RadarParams                        m_params{};
     Target                             m_target{};
-    std::vector<std::complex<double>>  m_ifBuf{};
+    std::vector<std::complex<float>>   m_ifBuf{};
 
     void buildSpectrum();
 

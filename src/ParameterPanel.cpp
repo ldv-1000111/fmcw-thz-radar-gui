@@ -51,6 +51,8 @@ RadarParams ParameterPanel::params() const
     p.bandwidth  = m_ui->spinBW_GHz->value()  * 1.0e9;
     p.chirp_time = m_ui->spinTc_us->value()   * 1.0e-6;
     p.fs         = m_ui->spinFs_MHz->value()  * 1.0e6;
+    p.num_samples = static_cast<int>(p.fs * p.chirp_time);
+    p.num_chirps  = 256;   // fixed for Phase 1
     return p;
 }
 
@@ -59,6 +61,7 @@ Target ParameterPanel::target() const
     Target t;
     t.range    = m_ui->spinRange_m->value();
     t.velocity = m_ui->spinVel_mps->value();
+    t.rcs      = 1.0;   // unit reflectivity — fixed for now
     t.vib_amp  = m_ui->spinVibAmp_mm->value()  * 1.0e-3;
     t.vib_freq = m_ui->spinVibFreq_Hz->value();
     return t;

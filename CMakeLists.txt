@@ -16,6 +16,7 @@ endif()
 # ---------------------------------------------------------------------------
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Charts)
 qt_standard_project_setup()
+set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_SOURCE_DIR}/ui")
 
 # ---------------------------------------------------------------------------
 # Compiler warnings — mirror engine repo conventions
@@ -51,7 +52,8 @@ target_compile_features(fmcw_core PUBLIC cxx_std_17)
 # ---------------------------------------------------------------------------
 add_library(radar_engine STATIC
     src/RadarEngine.cpp
-)
+    include/RadarEngine.hpp
+    )
 target_include_directories(radar_engine PUBLIC include)
 target_link_libraries(radar_engine PUBLIC fmcw_core Qt6::Core)
 
@@ -65,6 +67,9 @@ qt_add_executable(fmcw_gui
     src/PlotWidget.cpp
     ui/MainWindow.ui
     ui/ParameterPanel.ui
+    include/MainWindow.hpp
+    include/ParameterPanel.hpp
+    include/PlotWidget.hpp
 )
 
 target_include_directories(fmcw_gui PRIVATE include)

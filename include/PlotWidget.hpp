@@ -2,15 +2,13 @@
 
 #include <QWidget>
 #include <QVector>
-
-QT_BEGIN_NAMESPACE
-class QTabWidget;
-QT_END_NAMESPACE
-
-namespace QtCharts {
-class QChartView;
-class QLineSeries;
-}
+#include <QTabWidget>
+#include <QPen>
+#include <QColor>
+#include <QtCharts/QChart>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QValueAxis>
 
 namespace fmcw_gui {
 
@@ -32,10 +30,10 @@ public:
 
 private:
     QTabWidget*           m_tabs{nullptr};
-    QtCharts::QChartView* m_ifView{nullptr};
-    QtCharts::QChartView* m_specView{nullptr};
-    QtCharts::QLineSeries* m_ifSeries{nullptr};
-    QtCharts::QLineSeries* m_specSeries{nullptr};
+    QChartView*           m_ifView{nullptr};
+    QChartView*           m_specView{nullptr};
+    QLineSeries*          m_ifSeries{nullptr};
+    QLineSeries*          m_specSeries{nullptr};
 
     void buildIfChart();
     void buildSpecChart();
