@@ -51,7 +51,7 @@ and ``Target`` — no caching, no reimplementation of engine physics.
    * - ``rangeResM()``
      - Range resolution in metres: ``c/2B``
    * - ``velResMps()``
-     - Velocity resolution in m/s: ``λ/2Tc``
+     - Velocity resolution in m/s: ``λ / (2 × N_c × Tc)`` where N_c = ``RadarParams::num_chirps``
    * - ``maxRangeM()``
      - Maximum unambiguous range in metres: ``fs·c / 2μ``
    * - ``maxVelMps()``

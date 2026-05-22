@@ -50,10 +50,31 @@ Three read-only labels update instantly on every spin-box change:
 
 - **λ** — wavelength in mm (≥ 1 mm) or µm (< 1 mm), computed as c/f₀.
 - **Δr** — range resolution in cm, computed as c/2B.
-- **Δv** — velocity resolution in mm/s, computed as λ/2Tc.
+- **Δv** — velocity resolution in mm/s (or µm/s at very high frequencies),
+  computed as λ / (2 × N_c × T_c) where N_c = 256 chirps (fixed for Phase 1).
 
-These are display-only.  The authoritative values are computed by
-``RadarEngine`` from the same formulas.
+At default parameters (300 GHz, B = 4 GHz, T_c = 100 µs, N_c = 256):
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Label
+     - Value
+     - Formula
+   * - λ
+     - 1.00 mm
+     - c / f₀ = 3×10⁸ / 300×10⁹
+   * - Δr
+     - 3.75 cm
+     - c / 2B = 3×10⁸ / (2 × 4×10⁹)
+   * - Δv
+     - 19.53 mm/s
+     - λ / (2 × N_c × T_c) = 0.001 / (2 × 256 × 100×10⁻⁶)
+
+These are display-only. The authoritative values are computed by
+``RadarEngine`` from the same formulas via ``rangeResM()``,
+``velResMps()``, and ``wavelengthM()``.
 
 Target group
 ------------
