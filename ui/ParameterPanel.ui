@@ -2,81 +2,55 @@
 <ui version="4.0">
  <class>ParameterPanel</class>
  <widget class="QWidget" name="ParameterPanel">
-  <property name="minimumWidth">
-   <number>260</number>
-  </property>
+  <property name="minimumWidth"><number>220</number></property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>8</number>
-   </property>
+   <property name="spacing"><number>8</number></property>
 
    <item>
     <widget class="QGroupBox" name="groupSystem">
-     <property name="title">
-      <string>Radar system</string>
-     </property>
+     <property name="title"><string>Radar system</string></property>
      <layout class="QFormLayout" name="formSystem">
 
-      <item row="0" column="0">
-       <widget class="QLabel" name="lblF0">
-        <property name="text"><string>f₀ (GHz)</string></property>
-       </widget>
-      </item>
+      <item row="0" column="0"><widget class="QLabel"><property name="text"><string>f₀ (GHz)</string></property></widget></item>
       <item row="0" column="1">
        <widget class="QDoubleSpinBox" name="spinF0_GHz">
-        <property name="toolTip"><string>Centre frequency. 100–300 GHz = sub-THz; &gt;300 GHz = THz</string></property>
-        <property name="minimum"><double>10.000000000000000</double></property>
-        <property name="maximum"><double>10000.000000000000000</double></property>
-        <property name="singleStep"><double>10.000000000000000</double></property>
-        <property name="value"><double>300.000000000000000</double></property>
+        <property name="minimum"><double>10.0</double></property>
+        <property name="maximum"><double>10000.0</double></property>
+        <property name="singleStep"><double>10.0</double></property>
+        <property name="value"><double>300.0</double></property>
         <property name="decimals"><number>1</number></property>
        </widget>
       </item>
 
-      <item row="1" column="0">
-       <widget class="QLabel" name="lblBW">
-        <property name="text"><string>B (GHz)</string></property>
-       </widget>
-      </item>
+      <item row="1" column="0"><widget class="QLabel"><property name="text"><string>B (GHz)</string></property></widget></item>
       <item row="1" column="1">
        <widget class="QDoubleSpinBox" name="spinBW_GHz">
-        <property name="toolTip"><string>Sweep bandwidth → Δr = c/2B</string></property>
-        <property name="minimum"><double>0.100000000000000</double></property>
-        <property name="maximum"><double>500.000000000000000</double></property>
-        <property name="singleStep"><double>1.000000000000000</double></property>
-        <property name="value"><double>4.000000000000000</double></property>
+        <property name="minimum"><double>0.1</double></property>
+        <property name="maximum"><double>500.0</double></property>
+        <property name="singleStep"><double>1.0</double></property>
+        <property name="value"><double>4.0</double></property>
         <property name="decimals"><number>1</number></property>
        </widget>
       </item>
 
-      <item row="2" column="0">
-       <widget class="QLabel" name="lblTc">
-        <property name="text"><string>Tc (µs)</string></property>
-       </widget>
-      </item>
+      <item row="2" column="0"><widget class="QLabel"><property name="text"><string>Tc (µs)</string></property></widget></item>
       <item row="2" column="1">
        <widget class="QDoubleSpinBox" name="spinTc_us">
-        <property name="toolTip"><string>Chirp duration</string></property>
-        <property name="minimum"><double>1.000000000000000</double></property>
-        <property name="maximum"><double>1000.000000000000000</double></property>
-        <property name="singleStep"><double>10.000000000000000</double></property>
-        <property name="value"><double>100.000000000000000</double></property>
+        <property name="minimum"><double>1.0</double></property>
+        <property name="maximum"><double>500.0</double></property>
+        <property name="singleStep"><double>10.0</double></property>
+        <property name="value"><double>100.0</double></property>
         <property name="decimals"><number>0</number></property>
        </widget>
       </item>
 
-      <item row="3" column="0">
-       <widget class="QLabel" name="lblFs">
-        <property name="text"><string>fs (MHz)</string></property>
-       </widget>
-      </item>
+      <item row="3" column="0"><widget class="QLabel"><property name="text"><string>fs (MHz)</string></property></widget></item>
       <item row="3" column="1">
        <widget class="QDoubleSpinBox" name="spinFs_MHz">
-        <property name="toolTip"><string>IF sampling rate</string></property>
-        <property name="minimum"><double>1.000000000000000</double></property>
-        <property name="maximum"><double>500.000000000000000</double></property>
-        <property name="singleStep"><double>5.000000000000000</double></property>
-        <property name="value"><double>50.000000000000000</double></property>
+        <property name="minimum"><double>1.0</double></property>
+        <property name="maximum"><double>500.0</double></property>
+        <property name="singleStep"><double>5.0</double></property>
+        <property name="value"><double>50.0</double></property>
         <property name="decimals"><number>0</number></property>
        </widget>
       </item>
@@ -87,95 +61,60 @@
 
    <item>
     <widget class="QGroupBox" name="groupDerived">
-     <property name="title">
-      <string>Derived</string>
-     </property>
-     <layout class="QVBoxLayout" name="vboxDerived">
-      <item>
-       <widget class="QLabel" name="lblLambda">
-        <property name="text"><string>λ = —</string></property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="lblRangeRes">
-        <property name="text"><string>Δr = —</string></property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="lblVelRes">
-        <property name="text"><string>Δv = —</string></property>
-       </widget>
-      </item>
+     <property name="title"><string>Derived</string></property>
+     <layout class="QVBoxLayout">
+      <item><widget class="QLabel" name="lblLambda"><property name="text"><string>λ = —</string></property></widget></item>
+      <item><widget class="QLabel" name="lblRangeRes"><property name="text"><string>Δr = —</string></property></widget></item>
+      <item><widget class="QLabel" name="lblVelRes"><property name="text"><string>Δv = —</string></property></widget></item>
      </layout>
     </widget>
    </item>
 
    <item>
     <widget class="QGroupBox" name="groupTarget">
-     <property name="title">
-      <string>Target</string>
-     </property>
-     <layout class="QFormLayout" name="formTarget">
+     <property name="title"><string>Target</string></property>
+     <layout class="QFormLayout">
 
-      <item row="0" column="0">
-       <widget class="QLabel" name="lblRange">
-        <property name="text"><string>Range (m)</string></property>
-       </widget>
-      </item>
+      <item row="0" column="0"><widget class="QLabel"><property name="text"><string>Range (m)</string></property></widget></item>
       <item row="0" column="1">
        <widget class="QDoubleSpinBox" name="spinRange_m">
-        <property name="minimum"><double>1.000000000000000</double></property>
-        <property name="maximum"><double>300.000000000000000</double></property>
-        <property name="singleStep"><double>5.000000000000000</double></property>
-        <property name="value"><double>50.000000000000000</double></property>
+        <property name="minimum"><double>1.0</double></property>
+        <property name="maximum"><double>300.0</double></property>
+        <property name="singleStep"><double>5.0</double></property>
+        <property name="value"><double>50.0</double></property>
         <property name="decimals"><number>1</number></property>
        </widget>
       </item>
 
-      <item row="1" column="0">
-       <widget class="QLabel" name="lblVel">
-        <property name="text"><string>Velocity (m/s)</string></property>
-       </widget>
-      </item>
+      <item row="1" column="0"><widget class="QLabel"><property name="text"><string>Vel (m/s)</string></property></widget></item>
       <item row="1" column="1">
        <widget class="QDoubleSpinBox" name="spinVel_mps">
-        <property name="toolTip"><string>Positive = approaching</string></property>
-        <property name="minimum"><double>-30.000000000000000</double></property>
-        <property name="maximum"><double>30.000000000000000</double></property>
-        <property name="singleStep"><double>0.500000000000000</double></property>
-        <property name="value"><double>0.000000000000000</double></property>
+        <property name="minimum"><double>-30.0</double></property>
+        <property name="maximum"><double>30.0</double></property>
+        <property name="singleStep"><double>0.5</double></property>
+        <property name="value"><double>0.0</double></property>
         <property name="decimals"><number>1</number></property>
        </widget>
       </item>
 
-      <item row="2" column="0">
-       <widget class="QLabel" name="lblVibAmp">
-        <property name="text"><string>Vib amp (mm)</string></property>
-       </widget>
-      </item>
+      <item row="2" column="0"><widget class="QLabel"><property name="text"><string>Vib (mm)</string></property></widget></item>
       <item row="2" column="1">
        <widget class="QDoubleSpinBox" name="spinVibAmp_mm">
-        <property name="toolTip"><string>Micro-Doppler vibration amplitude</string></property>
-        <property name="minimum"><double>0.000000000000000</double></property>
-        <property name="maximum"><double>50.000000000000000</double></property>
-        <property name="singleStep"><double>0.100000000000000</double></property>
-        <property name="value"><double>0.200000000000000</double></property>
+        <property name="minimum"><double>0.0</double></property>
+        <property name="maximum"><double>50.0</double></property>
+        <property name="singleStep"><double>0.1</double></property>
+        <property name="value"><double>0.2</double></property>
         <property name="decimals"><number>2</number></property>
        </widget>
       </item>
 
-      <item row="3" column="0">
-       <widget class="QLabel" name="lblVibFreq">
-        <property name="text"><string>Vib freq (Hz)</string></property>
-       </widget>
-      </item>
+      <item row="3" column="0"><widget class="QLabel"><property name="text"><string>Vib Hz</string></property></widget></item>
       <item row="3" column="1">
        <widget class="QDoubleSpinBox" name="spinVibFreq_Hz">
-        <property name="toolTip"><string>200 Hz = engine idle; 2.5 Hz = pedestrian limb; 80 Hz = drone rotor</string></property>
-        <property name="minimum"><double>0.000000000000000</double></property>
-        <property name="maximum"><double>500.000000000000000</double></property>
-        <property name="singleStep"><double>10.000000000000000</double></property>
-        <property name="value"><double>200.000000000000000</double></property>
+        <property name="minimum"><double>0.0</double></property>
+        <property name="maximum"><double>500.0</double></property>
+        <property name="singleStep"><double>10.0</double></property>
+        <property name="value"><double>200.0</double></property>
         <property name="decimals"><number>0</number></property>
        </widget>
       </item>
@@ -186,14 +125,9 @@
 
    <item>
     <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
      <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
+      <size><width>20</width><height>40</height></size>
      </property>
     </spacer>
    </item>

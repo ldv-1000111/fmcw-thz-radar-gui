@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QString>
 #include <memory>
 #include "fmcw_generator.hpp"
 
@@ -10,8 +11,9 @@ QT_END_NAMESPACE
 
 namespace fmcw_gui {
 
-/// Slider + spin-box panel for all RadarParams and Target fields.
-/// Emits paramsChanged() whenever any control is modified.
+/// Spin-box only parameter panel (left dock).
+/// Sliders live in SliderBar at the bottom of the main window.
+/// MainWindow keeps both in sync via syncFromSlider().
 class ParameterPanel : public QWidget
 {
     Q_OBJECT
@@ -26,11 +28,12 @@ public:
     [[nodiscard]] RadarParams params() const;
     [[nodiscard]] Target      target() const;
 
+    /// Called by MainWindow when a SliderBar slider moves.
+    /// Updates the matching spin box and emits paramsChanged().
+    void syncFromSlider(const QString& id, double value);
+
 signals:
     void paramsChanged();
-
-private slots:
-    void onAnyControlChanged();
 
 private:
     std::unique_ptr<Ui::ParameterPanel> m_ui;

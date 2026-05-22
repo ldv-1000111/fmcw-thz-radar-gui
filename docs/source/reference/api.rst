@@ -91,14 +91,40 @@ ParameterPanel
 
 .. code-block:: cpp
 
-   void setParams(const RadarParams& p);   // push values into controls
+   void setParams(const RadarParams& p);   // push values into spin boxes
    void setTarget(const Target& t);
 
-   RadarParams params() const;             // read current control state
+   RadarParams params() const;             // read current spin box state
    Target      target() const;
+
+   // Called by MainWindow when a SliderBar slider moves.
+   // Updates the matching spin box and emits paramsChanged().
+   void syncFromSlider(const QString& id, double value);
 
    // Signal
    void paramsChanged();   // emitted on any spin-box change
+
+SliderBar
+---------
+
+**Header:** ``include/SliderBar.hpp``  
+**Namespace:** ``fmcw_gui``  
+**Base class:** ``QWidget``
+
+.. code-block:: cpp
+
+   // Add a slider column to the bar
+   void addSlider(const SliderSpec& spec);
+
+   // Get/set physical value by slider ID string
+   double value(const QString& id) const;
+   void   setValue(const QString& id, double physicalVal);
+
+   // Configure the ADAS band overlay on the f0 BandSlider
+   void setAdasBand(int loInt, int hiInt, const QColor& colour);
+
+   // Signal — emitted on every slider move
+   void valueChanged(const QString& id, double physicalValue);
 
 PlotWidget
 ----------

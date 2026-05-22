@@ -16,6 +16,8 @@ endif()
 # ---------------------------------------------------------------------------
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Charts)
 qt_standard_project_setup()
+
+# Tell AutoUIC where to find .ui files (they live in ui/, not src/)
 set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_SOURCE_DIR}/ui")
 
 # ---------------------------------------------------------------------------
@@ -53,7 +55,7 @@ target_compile_features(fmcw_core PUBLIC cxx_std_17)
 add_library(radar_engine STATIC
     src/RadarEngine.cpp
     include/RadarEngine.hpp
-    )
+)
 target_include_directories(radar_engine PUBLIC include)
 target_link_libraries(radar_engine PUBLIC fmcw_core Qt6::Core)
 
@@ -65,11 +67,14 @@ qt_add_executable(fmcw_gui
     src/MainWindow.cpp
     src/ParameterPanel.cpp
     src/PlotWidget.cpp
+    src/SliderBar.cpp
     ui/MainWindow.ui
     ui/ParameterPanel.ui
     include/MainWindow.hpp
     include/ParameterPanel.hpp
     include/PlotWidget.hpp
+    include/BandSlider.hpp
+    include/SliderBar.hpp
 )
 
 target_include_directories(fmcw_gui PRIVATE include)

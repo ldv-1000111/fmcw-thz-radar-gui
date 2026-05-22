@@ -18,7 +18,7 @@ ParameterPanel::ParameterPanel(QWidget* parent)
 ParameterPanel::~ParameterPanel() = default;
 
 // ---------------------------------------------------------------------------
-// Public setters — push engine defaults into controls at startup
+// Public setters
 // ---------------------------------------------------------------------------
 void ParameterPanel::setParams(const RadarParams& p)
 {
@@ -42,17 +42,17 @@ void ParameterPanel::setTarget(const Target& t)
 }
 
 // ---------------------------------------------------------------------------
-// Public getters — read current control state back to engine structs
+// Public getters
 // ---------------------------------------------------------------------------
 RadarParams ParameterPanel::params() const
 {
     RadarParams p;
-    p.f0         = m_ui->spinF0_GHz->value()  * 1.0e9;
-    p.bandwidth  = m_ui->spinBW_GHz->value()  * 1.0e9;
-    p.chirp_time = m_ui->spinTc_us->value()   * 1.0e-6;
-    p.fs         = m_ui->spinFs_MHz->value()  * 1.0e6;
+    p.f0          = m_ui->spinF0_GHz->value() * 1.0e9;
+    p.bandwidth   = m_ui->spinBW_GHz->value() * 1.0e9;
+    p.chirp_time  = m_ui->spinTc_us->value()  * 1.0e-6;
+    p.fs          = m_ui->spinFs_MHz->value() * 1.0e6;
     p.num_samples = static_cast<int>(p.fs * p.chirp_time);
-    p.num_chirps  = 256;   // fixed for Phase 1
+    p.num_chirps  = 256;
     return p;
 }
 
@@ -61,10 +61,29 @@ Target ParameterPanel::target() const
     Target t;
     t.range    = m_ui->spinRange_m->value();
     t.velocity = m_ui->spinVel_mps->value();
-    t.rcs      = 1.0;   // unit reflectivity — fixed for now
-    t.vib_amp  = m_ui->spinVibAmp_mm->value()  * 1.0e-3;
+    t.rcs      = 1.0;
+    t.vib_amp  = m_ui->spinVibAmp_mm->value() * 1.0e-3;
     t.vib_freq = m_ui->spinVibFreq_Hz->value();
     return t;
+}
+
+// ---------------------------------------------------------------------------
+// Sync from SliderBar — called by MainWindow when a slider moves
+// ---------------------------------------------------------------------------
+void ParameterPanel::syncFromSlider(const QString& id, double value)
+{
+    m_blocking = true;
+    if      (id == "f0")      m_ui->spinF0_GHz->setValue(value);
+    else if (id == "bw")      m_ui->spinBW_GHz->setValue(value);
+    else if (id == "tc")      m_ui->spinTc_us->setValue(value);
+    else if (id == "fs")      m_ui->spinFs_MHz->setValue(value);
+    else if (id == "range")   m_ui->spinRange_m->setValue(value);
+    else if (id == "vel")     m_ui->spinVel_mps->setValue(value);
+    else if (id == "vibamp")  m_ui->spinVibAmp_mm->setValue(value);
+    else if (id == "vibfreq") m_ui->spinVibFreq_Hz->setValue(value);
+    m_blocking = false;
+    updateDerivedLabels();
+    emit paramsChanged();
 }
 
 // ---------------------------------------------------------------------------
@@ -72,29 +91,24 @@ Target ParameterPanel::target() const
 // ---------------------------------------------------------------------------
 void ParameterPanel::connectAll()
 {
-    // Connect every spin box to the same handler
     const auto spins = findChildren<QDoubleSpinBox*>();
     for (auto* s : spins)
-        connect(s, &QDoubleSpinBox::valueChanged,
-                this, &ParameterPanel::onAnyControlChanged);
-}
-
-void ParameterPanel::onAnyControlChanged()
-{
-    if (m_blocking) return;
-    updateDerivedLabels();
-    emit paramsChanged();
+        connect(s, &QDoubleSpinBox::valueChanged, this, [this]() {
+            if (m_blocking) return;
+            updateDerivedLabels();
+            emit paramsChanged();
+        });
 }
 
 void ParameterPanel::updateDerivedLabels()
 {
-    const double f0   = m_ui->spinF0_GHz->value() * 1.0e9;
-    const double B    = m_ui->spinBW_GHz->value() * 1.0e9;
-    const double Tc   = m_ui->spinTc_us->value()  * 1.0e-6;
-    const double lam  = C / f0;
-    const double dr   = C / (2.0 * B);
-    const double Nc   = 256.0;   // num_chirps — fixed for Phase 1
-    const double dv   = lam / (2.0 * Nc * Tc);
+    const double f0  = m_ui->spinF0_GHz->value() * 1.0e9;
+    const double B   = m_ui->spinBW_GHz->value() * 1.0e9;
+    const double Tc  = m_ui->spinTc_us->value()  * 1.0e-6;
+    const double lam = C / f0;
+    const double dr  = C / (2.0 * B);
+    const double Nc  = 256.0;
+    const double dv  = lam / (2.0 * Nc * Tc);
 
     m_ui->lblLambda->setText(
         lam >= 1.0e-3

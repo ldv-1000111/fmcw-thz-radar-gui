@@ -41,6 +41,7 @@ GUI on the next ``git submodule update``.
    :caption: GUI guide
 
    gui/parameter_panel
+   gui/slider_bar
    gui/plot_widget
 
 .. toctree::
