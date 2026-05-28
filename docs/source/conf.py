@@ -10,16 +10,17 @@ release   = "0.1.0"
 # -- General configuration ----------------------------------------------------
 
 extensions = [
-    "sphinx_revealjs",
+    "sphinx.ext.todo",
     "sphinx_copybutton",
 ]
+
+todo_include_todos = True
 
 # -- Options for HTML output --------------------------------------------------
 
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
     "logo_only":                  False,
-    "display_version":            True,
     "prev_next_buttons_location": "bottom",
     "style_external_links":       True,
     "collapse_navigation":        False,
@@ -37,19 +38,5 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 source_suffix    = {".rst": "restructuredtext"}
 pygments_style   = "monokai"
 
-copybutton_prompt_text     = r"^\$ |>>> "
+copybutton_prompt_text      = r"^\$ |>>> "
 copybutton_prompt_is_regexp = True
-
-# ── reveal.js (slides keep Teradar dark theme) ───────────────
-revealjs_theme = "black"
-revealjs_script_conf = {
-    "controls":             True,
-    "progress":             True,
-    "slideNumber":          True,
-    "transition":           "fade",
-    "backgroundTransition": "fade",
-    "hash":                 True,
-    "center":               True,
-}
-revealjs_css_files   = ["custom.css"]
-revealjs_static_path = ["_static"]
