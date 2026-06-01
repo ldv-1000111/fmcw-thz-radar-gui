@@ -27,6 +27,8 @@ submodule** and compiled directly into the application.
 All radar parameters are live-editable via spin boxes. Every change triggers
 an immediate recompute via `generate_chirp_if()` and a plot refresh.
 
+![FMCW THz Radar Simulator](docs/source/_static/fmcw-gui_1.png)
+
 ---
 
 ## Quick Start

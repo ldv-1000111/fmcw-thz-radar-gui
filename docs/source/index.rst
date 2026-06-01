@@ -29,6 +29,11 @@ GUI on the next ``git submodule update``.
 
 **Engine docs:** `fmcw-terahertz-radar-simulation.readthedocs.io <https://fmcw-terahertz-radar-simulation.readthedocs.io>`_
 
+.. image:: _static/fmcw-gui_1.png
+   :alt: FMCW THz Radar Simulator — IF signal and range spectrum
+   :align: center
+   :width: 100%
+
 .. toctree::
    :maxdepth: 2
    :caption: Getting started
