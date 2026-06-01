@@ -34,6 +34,7 @@ GUI on the next ``git submodule update``.
    :align: center
    :width: 100%
 
+|
 
 .. toctree::
    :maxdepth: 2
