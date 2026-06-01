@@ -15,7 +15,7 @@ extensions = [
     "myst_parser",
 ]
 
-todo_include_todos = True
+todo_include_todos = False
 
 # -- Options for HTML output --------------------------------------------------
 
