@@ -10,6 +10,7 @@ version   = "0.1"
 
 extensions = [
     "sphinx.ext.mathjax",
+    "sphinx.ext.todo",
     "sphinx_copybutton",
     "myst_parser",
 ]
