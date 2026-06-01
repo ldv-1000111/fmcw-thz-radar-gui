@@ -33,7 +33,6 @@ GUI on the next ``git submodule update``.
    :alt: FMCW THz Radar Simulator — IF signal and range spectrum
    :align: center
    :width: 100%
-|
 
 .. toctree::
    :maxdepth: 2
