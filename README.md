@@ -29,6 +29,7 @@ an immediate recompute via `generate_chirp_if()` and a plot refresh.
 
 ![FMCW THz Radar Simulator](docs/source/_static/fmcw-gui_1.png)
 
+
 ---
 
 ## Quick Start
